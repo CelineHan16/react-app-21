@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import AddUser from "./AddUser";
 import { loadAlbums } from "./albumsSlice";
 import { loadPhotos } from "./photosSlice";
 import { loadPosts } from "./postsSlice";
 import { loadTodos } from "./todosSlice";
+import Users from "./Users";
 import { loadUsers } from "./usersSlice";
 
 function App() {
   const dispatch = useDispatch();
-  const users = useSelector(store => store.users.users);
+  // const users = useSelector(store => store.users.users);
   const posts = useSelector(store => store.posts.posts);
   const albums = useSelector(store => store.albums.albums);
   const photos = useSelector(store => store.photos.photos);
@@ -30,7 +32,7 @@ function App() {
     dispatch(loadTodos());
   }, []);
 
-  const outputUsers = users.map(user => <li key={user.id}>{user.name}</li>);
+  // const outputUsers = users.map(user => <li key={user.id}>{user.name}</li>);
   const outputAlbums = albums.slice(0, 15).map(album => <li key={album.id}>{album.title}</li>);
   const outputPosts = posts.slice(0, 15).map(post => 
     <article key={post.id}>
@@ -42,9 +44,12 @@ function App() {
   
   return (
     <div className="App">
-      <ul>
+      <Users />
+
+      <AddUser />
+      {/* <ul>
         {outputUsers}
-      </ul>
+      </ul> */}
       <div>
         {outputPosts}
       </div>
